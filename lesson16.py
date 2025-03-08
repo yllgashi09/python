@@ -36,4 +36,32 @@ try:
 except Exception as e:
     st.exception(e)
 
+# The calculator functions and main logic should be defined outside the button condition
+def calculate(num1, num2, operation):
+    if operation == 'Add':
+        return num1 + num2
+    elif operation == 'Subtract':
+        return num1 - num2
+    elif operation == 'Multiply':
+        return num1 * num2
+    elif operation == 'Divide':
+        try:
+            return num1 / num2
+        except ZeroDivisionError:
+            return "Error! Division by zero."
 
+def main():
+    st.title("Simple Calculator")
+
+    st.header("Enter Numbers for Calculation")
+    num1 = st.number_input("Enter the first number", value=0)
+    num2 = st.number_input("Enter the second number", value=0)
+
+    operation = st.selectbox("Select Operation", ("Add", "Subtract", "Multiply", "Divide"))
+
+    if st.button("Calculate"):
+        result = calculate(num1, num2, operation)
+        st.write(f"The result of {operation}ing {num1} and {num2} is: {result}")
+
+if __name__ == "__main__":
+    main()
