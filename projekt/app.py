@@ -25,3 +25,22 @@ if sy.button("Create Developer"):
     st.json(response.json())
 st.header("Project Dashboard")
 if st.button("get project"):
+    response = requests.get("https://localhost:8000/projects/")
+    project_data = response.json()['projects']
+    if project_data:
+        project_df = pd.dataframe(project_data)
+
+        st.subheader("Project Overview")
+        st.dataframe(projects_df)
+
+        st.subheader("Project Overview")
+        for project in project_data:
+            st.markdown(f"**title:** {project['title']}")
+            st.markdown(f"**Description:** {project['Description']}")
+            st.markdown(f"**language:** {', '.join['language']}")
+            st.markdown(f"**lead developer:** {project['lead developer']['name']}with {project['lead_developer']['experience']}years of experience")
+            st.markdown(f"---")
+        else:
+            st.warning('no project found.')
+
+
