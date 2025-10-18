@@ -70,4 +70,4 @@ def delete_category(category_id: int):
         raise HTTPException(status_code=404, detail="Category not found")
     conn.comit()
     conn.close()
-    return ("details": "Category deleted")
+    return ("details":"Category deleted")
